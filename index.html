@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visual Novel — Beta</title>
+<style>
+:root{--bg:#efe6dc;--panel:#f7f0e8;--ink:#2a1a1f;--acc:#6b1e2e;--acc2:#b08d57;--mut:#7a6a68;--line:#c9b8a6;--op:.88;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme=dark]{--bg:#17101a;--panel:#241a29;--ink:#eadfe2;--acc:#c9566b;--acc2:#c9a86a;--mut:#9d8d98;--line:#463748}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;font-size:var(--fs,16px);min-height:100vh}
+#app{max-width:860px;margin:0 auto;padding:14px}
+h1,h2,h3{font-weight:normal;letter-spacing:.04em;margin:.3em 0}
+h1{font-size:2em;text-align:center;color:var(--acc)}
+.orn{text-align:center;color:var(--acc2);letter-spacing:.5em}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{display:block;width:100%;margin:8px 0;padding:11px 14px;background:var(--panel);border:1px solid var(--acc2);color:var(--ink);cursor:pointer;border-radius:3px;text-align:center;transition:.15s}
+.btn:hover{background:var(--acc);color:#fff;border-color:var(--acc)}
+.btn.sm{display:inline-block;width:auto;margin:4px 4px 4px 0;padding:6px 10px;font-size:.85em}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px;margin:10px 0}
+.row{display:flex;gap:10px;align-items:center;margin:8px 0;flex-wrap:wrap}
+.row>label{flex:1 1 180px}
+input[type=text],textarea,select{width:100%;background:var(--bg);border:1px solid var(--line);padding:8px;border-radius:3px}
+input[type=range]{flex:1 1 140px;accent-color:var(--acc)}
+.mut{color:var(--mut);font-size:.88em}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.top .btn{width:auto;margin:0}
+.chars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.spr{display:inline-block;width:64px;height:90px;margin:3px;border-radius:3px;font-size:.62em;color:#fff;text-align:center;padding-top:34px;overflow:hidden;line-height:1.1}
+.spr img{width:100%;height:100%;object-fit:cover}
+#stage{position:relative;height:min(62vh,520px);border:1px solid var(--acc2);border-radius:4px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+#bgl{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px;color:#fff;font-size:.75em;opacity:.8}
+#bgl img,#spr img{width:100%;height:100%;object-fit:cover}
+#spr{position:relative;width:34%;max-width:240px;height:72%;margin-bottom:150px;border-radius:6px;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.85em;padding:6px;transition:.3s}
+#dlg{position:absolute;left:10px;right:10px;bottom:10px;min-height:130px;background:var(--panel);opacity:var(--op);border:1px solid var(--acc2);border-radius:4px;padding:10px 14px;cursor:pointer}
+#who{color:var(--acc);font-size:.95em;margin-bottom:4px}
+#txt{line-height:1.5}
+.ch{margin-top:10px}
+.ch .btn{margin:6px 0;text-align:left}
+.pill{display:inline-block;padding:2px 8px;border:1px solid var(--acc2);border-radius:10px;font-size:.8em;margin:2px}
+.fact{display:flex;gap:6px;align-items:center;margin:5px 0}
+.fact input{flex:1}
+.pin{cursor:pointer;background:none;border:none;font-size:1.1em;padding:2px 4px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.err{color:var(--acc);padding:8px}
+.load{opacity:.6;font-style:italic}
+:root{--bg:#d8cfc0;--panel:#e8e0d2;--ink:#140d0f;--acc:#8a1220;--acc2:#8a1220;--mut:#55101a;--line:#b3a999}
+:root[data-theme=dark]{--bg:#241719;--panel:#2e1d20;--ink:#d8cfc0;--acc:#b5303f;--acc2:#8a1220;--mut:#b3a999;--line:#55101a}
+body{background:radial-gradient(ellipse at 50% 0%,#2e0a10 0%,#140d0f 70%) fixed;font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:500;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='30'%3E%3Cpath d='M3 2L3 23L8.5 18L12.5 27L16 25.5L12 17L19.5 17Z' fill='%23d8cfc0' stroke='%236e0f1a' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2,auto}
+button,select,.pin,#dlg{cursor:pointer}
+#app{position:relative;max-width:980px;margin:14px auto;padding:48px 34px;background-color:var(--bg);box-shadow:0 0 0 2px #8a1220,0 8px 30px rgba(138,18,32,.3);background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,repeat-x,repeat-x,repeat-y,repeat-y;background-position:0 0,100% 0,0 100%,100% 100%,0 0,0 100%,0 0,100% 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23140d0f'/%3E%3Cpath d='M12 5L19 12L12 19L5 12Z' fill='%238a1220'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23140d0f'/%3E%3Cpath d='M12 5L19 12L12 19L5 12Z' fill='%238a1220'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23140d0f'/%3E%3Cpath d='M12 5L19 12L12 19L5 12Z' fill='%238a1220'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23140d0f'/%3E%3Cpath d='M12 5L19 12L12 19L5 12Z' fill='%238a1220'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='24'%3E%3Crect width='40' height='24' fill='%23d8cfc0'/%3E%3Cpath d='M0 0H40V7Q30 24 20 7Q10 24 0 7Z' fill='%23140d0f'/%3E%3Ccircle cx='10' cy='9' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='30' cy='9' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='20' cy='3' r='1.6' fill='%238a1220'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='24'%3E%3Crect width='40' height='24' fill='%23d8cfc0'/%3E%3Cpath d='M0 24H40V17Q30 0 20 17Q10 0 0 17Z' fill='%23140d0f'/%3E%3Ccircle cx='10' cy='15' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='30' cy='15' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='20' cy='21' r='1.6' fill='%238a1220'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='40'%3E%3Crect width='24' height='40' fill='%23d8cfc0'/%3E%3Cpath d='M0 0V40H7Q24 30 7 20Q24 10 7 0Z' fill='%23140d0f'/%3E%3Ccircle cx='9' cy='10' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='9' cy='30' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='3' cy='20' r='1.6' fill='%238a1220'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='40'%3E%3Crect width='24' height='40' fill='%23d8cfc0'/%3E%3Cpath d='M24 0V40H17Q0 30 17 20Q0 10 17 0Z' fill='%23140d0f'/%3E%3Ccircle cx='15' cy='10' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='15' cy='30' r='2' fill='%23d8cfc0'/%3E%3Ccircle cx='21' cy='20' r='1.6' fill='%238a1220'/%3E%3C/svg%3E")}
+h1,h2,h3,.ttl{font-family:'Pirata One',Georgia,serif;font-weight:400;letter-spacing:.04em}
+h1{font-size:42px;margin:0;text-align:left}h2{font-size:34px}h3{font-size:25px}
+.sub{font-size:15px;font-style:italic;color:#55101a}
+.div{height:2px;margin:14px 0 6px;background:linear-gradient(90deg,transparent,#8a1220 15%,#8a1220 85%,transparent);position:relative}.div:after{content:'';position:absolute;left:50%;top:-4px;width:10px;height:10px;background:#140d0f;transform:translateX(-50%) rotate(45deg)}
+.btn{background:var(--bg);color:var(--ink);border:2px solid var(--ink);border-radius:0;font-weight:700;text-align:center}
+.btn:hover{background:var(--bg);color:var(--ink);border-color:#8a1220}.btn:active{transform:scale(.97)}
+.card,input[type=text],textarea,select{border-radius:0}input[type=text],textarea,select{background:var(--panel);border:2px solid var(--ink)}
+.card{background:var(--panel);border:2px solid var(--ink)}
+#stage{border:2px solid var(--ink);border-radius:0}
+#dlg{background:var(--panel);border:2px solid var(--ink);border-radius:0;box-shadow:inset 0 0 0 3px var(--panel),inset 0 0 0 4px #8a1220;color:var(--ink)}
+#who{font-family:'Pirata One',serif;font-size:1.3em;color:#8a1220}
+.mm{position:relative;max-width:540px;margin:26px auto;min-height:280px}
+.bw{position:absolute;left:0;top:0;width:112px;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+.bat{width:112px;animation:bob 3.2s ease-in-out infinite}.bat.mad{animation:shk .1s infinite}
+.mb{margin-left:132px}
+.mb .btn{position:relative;background:#140d0f;color:#d8cfc0;border-color:#140d0f;font-family:'Pirata One',serif;font-weight:400;font-size:25px;padding:20px 10px 14px}
+.mb .btn:before{content:'';position:absolute;top:7px;left:50%;width:9px;height:9px;background:#8a1220;transform:translateX(-50%) rotate(45deg)}
+.mb .btn:hover{border-color:#8a1220;background:#140d0f;color:#d8cfc0}
+.wg{transform-origin:62px 30px;animation:fl .55s ease-in-out infinite alternate}.eye{transform-origin:60px 22px;animation:bl 6s infinite}.br{opacity:0}.mad .br{opacity:1}
+@keyframes bob{50%{transform:translateY(-6px)}}@keyframes fl{from{transform:rotate(-12deg) scaleY(1.06)}to{transform:rotate(17deg) scaleY(.84)}}@keyframes bl{0%,96%,100%{transform:scaleY(1)}98%{transform:scaleY(.08)}}@keyframes shk{50%{transform:translate(2px,-2px)}}
+.ttl{text-align:center;font-size:44px;color:#8a1220;margin:4px 0}
+.car{display:flex;align-items:center;gap:8px}.arr{background:#140d0f;color:#d8cfc0;border:2px solid #8a1220;width:46px;height:70px;font-size:34px;font-family:'Pirata One',serif;flex:none}
+.big{flex:1;height:min(56vh,470px);border:2px solid var(--ink);box-shadow:inset 0 0 0 3px var(--bg),inset 0 0 0 4px #8a1220;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Pirata One',serif;font-size:34px;overflow:hidden;animation:pop .5s ease-out}.big img{height:100%;object-fit:contain}
+.dots{text-align:center;color:#8a1220;margin:8px 0}
+@keyframes pop{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.03)}100%{transform:scale(1);opacity:1}}
+#spr{animation:sway 4s ease-in-out infinite}@keyframes sway{50%{transform:translateY(-4px)}}
+#stage.zoom #spr{animation:zm 1.6s ease-in-out}#stage.shake{animation:sk .4s}#stage.flash:after{content:'';position:absolute;inset:0;background:#d8cfc0;pointer-events:none;animation:fl2 .6s forwards}
+@keyframes zm{40%{transform:scale(1.15)}}@keyframes sk{20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}@keyframes fl2{from{opacity:.85}to{opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+[data-anim=off] *{animation:none!important;transition:none!important}
+@media(max-width:560px){#app{padding:44px 18px}h1{font-size:36px}.mb{margin-left:100px}.bw,.bat{width:84px}.arr{width:34px}}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Pirata+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ===== ASSETS: replace img:null with data-URI (WebP) later; desc tells the AI when to use it ===== */
+const BG=[
+ {id:'hall',name:{ru:'Холл особняка',en:'Mansion hall'},desc:'Large old hall, arrival, meetings, tense talks',c:'#5a3a46'},
+ {id:'garden',name:{ru:'Ночной сад',en:'Night garden'},desc:'Quiet confessions, walks, romantic or melancholic mood',c:'#2f4a42'},
+ {id:'room',name:{ru:'Уютная комната',en:'Cosy room'},desc:'Private, intimate, calm scenes, rest',c:'#6a4f3a'}];
+const CH=[
+ {id:'liara',name:'Лиара / Liara',pron:'she/her',desc:{ru:'Сдержанная хранительница библиотеки, ироничная, скрывает мягкость.',en:'Reserved librarian, ironic, hides her softness.'},c:'#8a3550',trait:'',
+  sp:[['neutral','Спокойная, обычный разговор'],['smile','Улыбается, радость, флирт'],['sad','Грустная, прощание, плохие новости'],['angry','Злится, спор, обида']]},
+ {id:'kael',name:{ru:'Каэль',en:'Kael'}.ru+' / Kael',pron:'he/him',desc:{ru:'Дерзкий музыкант с кошкой, прячет потребность во внимании за грубостью.',en:'Cocky musician with a cat, hides his need for attention behind rudeness.'},c:'#355a8a',trait:'',
+  sp:[['neutral','Спокойный, обычный разговор'],['smile','Улыбается, радость, флирт'],['sad','Грустный, одинокий'],['angry','Раздражён, огрызается']]},
+ {id:'mor',name:'Мор / Mor',pron:'they/them',desc:{ru:'Загадочный садовник особняка, говорит загадками, наблюдателен.',en:'Mysterious gardener of the mansion, speaks in riddles, observant.'},c:'#4a6a3a',trait:'',
+  sp:[['neutral','Спокойный, обычный разговор'],['smile','Загадочная улыбка, интерес'],['sad','Тоскует, вспоминает прошлое'],['angry','Холодная ярость, угроза']]}];
+CH.forEach(c=>c.sp=c.sp.map(s=>({id:c.id+'_'+s[0],label:s[0],desc:s[1],img:null,c:c.c})));
+const BGIMG={};/* e.g. BGIMG.hall='data:image/webp;base64,...' */
+const SPIMG={};/* e.g. SPIMG.liara_smile='data:image/webp;base64,...' */
+
+/* ===== i18n ===== */
+const L={ru:{title:'Мини-новелла',start:'Начать игру',cont:'Продолжить',settings:'Настройки',archive:'Архив',chars:'Персонажи',back:'← Назад',pick:'Выберите персонажа',create:'Создание героя',name:'Имя',pron:'Местоимения',trait:'Характер (коротко)',go:'Начать',custom:'Свой вариант…',send:'Отправить',pin:'Запомнить',thinking:'Нейросеть думает…',
+ music:'Громкость музыки',sfx:'Громкость эффектов',speed:'Скорость текста',font:'Размер шрифта',lang:'Язык',theme:'Тема',light:'Светлая',dark:'Тёмная',opac:'Прозрачность диалога',
+ ai:'Поведение нейросети',d1:'Описания: кратко ↔ подробно',d2:'Диалоги: кратко ↔ подробно',d3:'Баланс: описания ↔ диалоги ↔ действия',d4:'Самостоятельность ИИ в сюжете',d5:'Неожиданные события',d6:'Режим',free:'Свободная генерация',seq:'Последовательное развитие отношений',pc:'Поведение персонажей (своими словами)',
+ f1:'Основные факты (постоянная память)',f1d:'То, что нельзя забывать даже спустя сотни сообщений.',f2:'Краткая хронология (обновляемая память)',f2d:'Сводка последних событий и развития отношений.',f3:'Контекст текущей сцены (временная память)',f3d:'Последние реплики и обстоятельства. Сворачивается при смене сцены.',
+ addf:'+ Добавить факт',exp:'Экспорт сохранения',imp:'Импорт (вставить JSON)',doimp:'Загрузить',clr:'Очистить историю',newg:'Новая игра',sure:'Точно? Это нельзя отменить.',pinned:'Закреплено',noai:'Нейросеть недоступна в этом режиме. Проверьте, что страница открыта через claude.ai.',menu:'В меню',err:'Ошибка ответа ИИ, попробуйте ещё раз.',retry:'Повторить',empty:'пока пусто',tune:'Кратко',tune2:'Подробно',srt:'Свернуть сцену в резюме'},
+ en:{title:'Mini Novel',start:'New game',cont:'Continue',settings:'Settings',archive:'Archive',chars:'Characters',back:'← Back',pick:'Choose a character',create:'Create your hero',name:'Name',pron:'Pronouns',trait:'Personality (short)',go:'Start',custom:'Your own reply…',send:'Send',pin:'Remember',thinking:'The AI is thinking…',
+ music:'Music volume',sfx:'Effects volume',speed:'Text speed',font:'Font size',lang:'Language',theme:'Theme',light:'Light',dark:'Dark',opac:'Dialogue box opacity',
+ ai:'AI behaviour',d1:'Descriptions: brief ↔ detailed',d2:'Dialogue: brief ↔ detailed',d3:'Balance: description ↔ dialogue ↔ action',d4:'AI plot initiative',d5:'Unexpected events',d6:'Mode',free:'Free generation',seq:'Steady relationship development',pc:'Character behaviour (in your words)',
+ f1:'Core facts (permanent memory)',f1d:'What must never be forgotten, even after hundreds of messages.',f2:'Short timeline (updating memory)',f2d:'Summary of recent events and relationship development.',f3:'Current scene context (temporary memory)',f3d:'Latest lines and circumstances. Collapsed into a summary on scene change.',
+ addf:'+ Add fact',exp:'Export save',imp:'Import (paste JSON)',doimp:'Load',clr:'Clear history',newg:'New game',sure:'Sure? This cannot be undone.',pinned:'Pinned',noai:'AI is unavailable here. Make sure the page is opened via claude.ai.',menu:'Menu',err:'Bad AI response, please retry.',retry:'Retry',empty:'empty yet',tune:'Brief',tune2:'Detailed',srt:'Collapse scene into summary'}};
+const $=s=>document.querySelector(s);
+const ST0={prov:'openai',music:50,sfx:60,speed:40,font:16,lang:'ru',theme:'light',op:88,d1:3,d2:3,d3:3,d4:3,d5:2,mode:'seq',pc:{}};
+let ST={...ST0},S=null,scr='menu',prev='menu',tab='f1',busy=false,tw=null,typing=false;
+const t=k=>L[ST.lang][k]||k;
+const nm=c=>typeof c.name==='string'?c.name.split(' / ')[ST.lang=='ru'?0:1]:c.name[ST.lang];
+const ds=c=>c.desc[ST.lang];
+function ld(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+ST={...ST0,...(ld('vn_set')||{})};S=ld('vn_save');
+if(!ld('vn_set')&&matchMedia&&0){}
+function applySt(){const r=document.documentElement;r.dataset.theme=ST.theme;r.style.setProperty('--fs',ST.font+'px');r.style.setProperty('--op',ST.op/100);r.lang=ST.lang;sv('vn_set',ST)}
+function save(){sv('vn_save',S)}
+/* ===== sound ===== */
+let AC=null;
+function blip(f,d,v){if(!ST.sfx)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.value=f;g.gain.value=.05*v*(ST.sfx/100);o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.0001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+const click=()=>blip(520,.06,1);
+/* ===== screens ===== */
+function go(s){prev=scr;scr=s;render()}
+function render(){clearInterval(tw);applySt();const A=$('#app');
+ const f={menu,settings,archive,chars,pick,create,game}[scr];A.innerHTML=f();if(scr==='game')startGame();}
+const back=()=>`<button class="btn sm" onclick="click();go('${S&&prev==='game'?'game':'menu'}')">${t('back')}</button>`;
+function menu(){return `<h1>${t('title')}</h1><div class="orn">✦ ✦ ✦</div><div style="max-width:420px;margin:20px auto">
+ ${S?`<button class="btn" onclick="click();go('game')">${t('cont')}</button>`:''}
+ <button class="btn" onclick="click();go('pick')">${t('start')}</button>
+ <button class="btn" onclick="click();go('chars')">${t('chars')}</button>
+ <button class="btn" onclick="click();go('archive')">${t('archive')}</button>
+ <button class="btn" onclick="click();go('settings')">${t('settings')}</button></div>`}
+function sl(k,lab,min=0,max=100,extra=''){return `<div class="row"><label>${lab}</label><input type="range" min="${min}" max="${max}" value="${ST[k]}" oninput="ST['${k}']=+this.value;applySt();${extra}"></div>`}
+function settings(){const m=ST.mode;let pc=CH.map(c=>`<div class="row"><label>${nm(c)}</label><input type="text" value="${(ST.pc[c.id]||'').replace(/"/g,'&quot;')}" placeholder="${ST.lang=='ru'?'напр.: более любвеобильная, грубее':'e.g. more affectionate, ruder'}" onchange="ST.pc['${c.id}']=this.value;applySt()"></div>`).join('');
+ return `<div class="top">${back()}<h2>${t('settings')}</h2></div><div class="card">
+ ${sl('music',t('music'))}${sl('sfx',t('sfx'),0,100,'blip(660,.08,1)')}${sl('speed',t('speed'),1,100)}${sl('font',t('font'),13,24)}${sl('op',t('opac'),30,100)}
+ <div class="row"><label>${t('lang')}</label><select onchange="ST.lang=this.value;render()"><option value="ru" ${ST.lang=='ru'?'selected':''}>Русский</option><option value="en" ${ST.lang=='en'?'selected':''}>English</option></select></div>
+ <div class="row"><label>${t('theme')}</label><select onchange="ST.theme=this.value;render()"><option value="light" ${ST.theme=='light'?'selected':''}>${t('light')}</option><option value="dark" ${ST.theme=='dark'?'selected':''}>${t('dark')}</option></select></div></div>
+ <h3>${t('ai')}</h3><div class="card">${sl('d1',t('d1'),1,5)}${sl('d2',t('d2'),1,5)}${sl('d3',t('d3'),1,5)}${sl('d4',t('d4'),1,5)}${sl('d5',t('d5'),1,5)}
+ <div class="row"><label>${t('d6')}</label><select onchange="ST.mode=this.value;applySt()"><option value="free" ${m=='free'?'selected':''}>${t('free')}</option><option value="seq" ${m=='seq'?'selected':''}>${t('seq')}</option></select></div></div>
+ <h3>${t('pc')}</h3><div class="card">${pc}</div>`}
+function sprs(c){return c.sp.map(s=>`<span class="spr" style="background:${s.c}" title="${s.desc}">${SPIMG[s.id]?`<img src="${SPIMG[s.id]}">`:s.label}</span>`).join('')}
+function chars(){return `<div class="top">${back()}<h2>${t('chars')}</h2></div><div class="chars">${CH.map(c=>`<div class="card"><h3>${nm(c)}</h3><div class="mut">${c.pron}</div><p>${ds(c)}</p>${sprs(c)}</div>`).join('')}</div>`}
+function pick(){return `<div class="top">${back()}<h2>${t('pick')}</h2></div><div class="chars">${CH.map(c=>`<div class="card"><h3>${nm(c)}</h3><div class="mut">${c.pron}</div><p>${ds(c)}</p><button class="btn" onclick="click();pickC('${c.id}')">${t('start')}</button></div>`).join('')}</div>`}
+let pk=null;
+function pickC(id){pk=id;go('create')}
+function create(){return `<div class="top">${back()}<h2>${t('create')}</h2></div><div class="card">
+ <div class="row"><label>${t('name')}<input type="text" id="pn"></label></div>
+ <div class="row"><label>${t('pron')}<select id="pp"><option>she/her</option><option>he/him</option><option>they/them</option></select></label></div>
+ <div class="row"><label>${t('trait')}<textarea id="pt" rows="3"></textarea></label></div>
+ <button class="btn" onclick="click();newGame()">${t('go')}</button></div>`}
+const PREM={ru:'Холодный вечер. Герой получает приглашение в старый особняк на окраине города. Дверь открывается сама, внутри горит свет.',en:'A cold evening. The hero receives an invitation to an old mansion on the edge of town. The door opens by itself and lights glow inside.'};
+function newGame(){const n=$('#pn').value.trim()||(ST.lang=='ru'?'Герой':'Hero');
+ S={player:{name:n,pron:$('#pp').value,trait:$('#pt').value.trim()},char:pk,facts:[],summary:'',scene:[],bg:'hall',sprite:pk+'_neutral',turn:0,cur:null,premise:PREM[ST.lang]};
+ S.cur={who:'',text:S.premise,choices:[]};save();go('game');}
+/* ===== archive ===== */
+function factRow(f,i){return `<div class="fact"><button class="pin" title="${t('pinned')}" onclick="S.facts[${i}].pin=!S.facts[${i}].pin;save();render()">${f.pin?'📌':'▫️'}</button><input type="text" value="${f.t.replace(/"/g,'&quot;')}" onchange="S.facts[${i}].t=this.value;save()"><button class="pin" onclick="S.facts.splice(${i},1);save();render()">✕</button></div>`}
+function archive(){const tabs=['f1','f2','f3'].map(k=>`<button class="btn sm" style="${tab==k?'background:var(--acc);color:#fff':''}" onclick="tab='${k}';render()">${t(k).split(' (')[0]}</button>`).join('');
+ let body='';
+ if(!S)body=`<div class="card mut">${t('empty')}</div>`;
+ else if(tab=='f1')body=`<div class="card"><div class="mut">${t('f1d')}</div>${S.facts.map(factRow).join('')||`<div class="mut">${t('empty')}</div>`}<button class="btn sm" onclick="S.facts.push({t:'',pin:true});save();render()">${t('addf')}</button></div>`;
+ else if(tab=='f2')body=`<div class="card"><div class="mut">${t('f2d')}</div><textarea rows="7" onchange="S.summary=this.value;save()">${S.summary}</textarea></div>`;
+ else body=`<div class="card"><div class="mut">${t('f3d')}</div>${S.scene.slice(-10).map(l=>`<p><b>${l.who||'—'}:</b> ${l.text}</p>`).join('')||`<div class="mut">${t('empty')}</div>`}<button class="btn sm" onclick="collapse()">${t('srt')}</button></div>`;
+ return `<div class="top">${back()}<h2>${t('archive')}</h2></div><div class="tabs">${tabs}</div>${body}
+ <div class="card"><button class="btn sm" onclick="exp()">${t('exp')}</button><button class="btn sm" onclick="clr()">${t('clr')}</button><button class="btn sm" onclick="newg()">${t('newg')}</button>
+ <textarea id="imp" rows="3" placeholder="${t('imp')}" style="margin-top:8px"></textarea><button class="btn sm" onclick="imp()">${t('doimp')}</button></div>`}
+function collapse(){if(!S)return;S.summary=(S.summary+' '+S.scene.map(l=>l.text).join(' ').slice(0,300)).trim().slice(-900);S.scene=S.scene.slice(-2);save();render()}
+async function exp(){const data=JSON.stringify({save:S,settings:{...ST,key:''}},null,1);let ok=false;
+ try{const d=await claude.use('downloads');if(d){await d.save({filename:'vn_save.json',data});ok=true}}catch(e){}
+ if(!ok){const ta=$('#imp');ta.value=data;ta.select()}}
+function imp(){try{const o=JSON.parse($('#imp').value);if(o.save)S=o.save;if(o.settings)ST={...ST0,...o.settings};save();render()}catch(e){alert('JSON error')}}
+function clr(){if(!S||!confirm(t('sure')))return;S.scene=[];S.summary='';S.facts=S.facts.filter(f=>f.pin);S.turn=0;S.cur={who:'',text:S.premise,choices:[]};save();render()}
+function newg(){if(!confirm(t('sure')))return;S=null;try{localStorage.removeItem('vn_save')}catch(e){}go('menu')}
+/* ===== game ===== */
+function game(){if(!S){scr='menu';return menu()}return `<div class="top"><button class="btn sm" onclick="click();go('menu')">${t('menu')}</button><span><button class="btn sm" onclick="click();go('archive')">${t('archive')}</button><button class="btn sm" onclick="click();go('settings')">${t('settings')}</button></span></div>
+ <div id="stage"><div id="bgl"></div><div id="spr"></div><div id="dlg" onclick="skip()"><div id="who"></div><div id="txt"></div></div></div><div class="ch" id="ch"></div>`}
+function startGame(){const b=BG.find(x=>x.id===S.bg)||BG[0];const st=$('#stage');
+ st.style.background=BGIMG[b.id]?`url(${BGIMG[b.id]}) center/cover`:b.c;$('#bgl').textContent=BGIMG[b.id]?'':b.name[ST.lang];
+ const c=CH.find(x=>x.id===S.char);const sp=c.sp.find(x=>x.id===S.sprite)||c.sp[0];const e=$('#spr');
+ e.style.background=SPIMG[sp.id]?'none':sp.c;e.innerHTML=SPIMG[sp.id]?`<img src="${SPIMG[sp.id]}">`:nm(c)+' · '+sp.label;
+ show(S.cur||{who:'',text:'',choices:[]});}
+let curTxt='';
+function show(c){const who=c.who==='_player'?S.player.name:c.who;$('#who').textContent=who||'';curTxt=c.text||'';const el=$('#txt');el.textContent='';let i=0;typing=true;$('#ch').innerHTML='';
+ const ms=Math.max(6,110-ST.speed);clearInterval(tw);
+ tw=setInterval(()=>{i++;el.textContent=curTxt.slice(0,i);if(i%3==0&&curTxt[i-1]!==' ')blip(who?(S.char&&who.indexOf(S.player.name)==0?300:420):240,.04,.6);if(i>=curTxt.length)done()},ms);
+ if(!curTxt)done();}
+function skip(){if(typing){clearInterval(tw);$('#txt').textContent=curTxt;done()}}
+function done(){clearInterval(tw);typing=false;if(!$('#ch'))return;const c=S.cur;const ch=(c.choices||[]);
+ $('#ch').innerHTML=(busy?'':`${ch.map((o,i)=>`<button class="btn" onclick="act(${i})">${o}</button>`).join('')}
+ <div class="row" style="margin:6px 0"><input type="text" id="cu" placeholder="${t('custom')}" onkeydown="if(event.key=='Enter')actC()"><button class="btn sm" onclick="actC()">${t('send')}</button><button class="btn sm" onclick="pinLast()">📌 ${t('pin')}</button></div>`)}
+function pinLast(){if(!S.cur||!S.cur.text)return;S.facts.push({t:S.cur.text.slice(0,140),pin:true});save();click();$('#ch .btn.sm:last-child').textContent='✓'}
+function act(i){click();step(S.cur.choices[i])}
+function actC(){const v=$('#cu').value.trim();if(v){click();step(v)}}
+/* ===== AI ===== */
+const lv=(v,a,b)=>v<=2?a:v>=4?b:'';
+function prompt(action){const c=CH.find(x=>x.id===S.char);
+ const bgs=BG.map(b=>`${b.id}: ${b.name.en} — ${b.desc}`).join('\n');
+ const sps=c.sp.map(s=>`${s.id}: ${s.desc}`).join('\n');
+ const beh=[`description length: ${ST.d1}/5`,`dialogue length: ${ST.d2}/5`,`balance 1=mostly description,3=mixed,5=mostly dialogue: ${ST.d3}/5`,`your plot initiative: ${ST.d4}/5`,`unexpected events frequency: ${ST.d5}/5`,ST.mode=='seq'?'develop relationships gradually and consistently':'free, spontaneous generation'].join('; ');
+ return `You write a short interactive visual novel scene. Reply with ONLY a JSON object, no markdown.
+LANGUAGE of all text: ${ST.lang=='ru'?'Russian':'English'}.
+Tone: gothic mansion, slow-burn.
+PLAYER: ${S.player.name} (${S.player.pron}). Personality: ${S.player.trait||'unspecified'}.
+LOVE-INTEREST CHARACTER: ${nm(c)} (${c.pron}). ${ds(c)} Extra behaviour: ${ST.pc[c.id]||'none'}.
+OPENING PREMISE (shared by all routes): ${S.premise}
+BEHAVIOUR SETTINGS: ${beh}
+CORE FACTS (never contradict):\n${S.facts.map(f=>'- '+f.t).join('\n')||'(none)'}
+TIMELINE SUMMARY: ${S.summary||'(story just started)'}
+RECENT SCENE:\n${S.scene.slice(-8).map(l=>(l.who||'Narrator')+': '+l.text).join('\n')||'(none)'}
+CURRENT BACKGROUND: ${S.bg}. CURRENT SPRITE: ${S.sprite}.
+AVAILABLE BACKGROUNDS (use only these ids):\n${bgs}
+AVAILABLE SPRITES (use only these ids):\n${sps}
+PLAYER ACTION: ${action}
+Return JSON: {"cam":"none|zoom|shake|flash (rare, only for dramatic moments)","bg":id,"sprite":id,"who":"speaker name or empty for narration","text":"1 beat of the scene, ${ST.d1+ST.d2<=4?'short':'medium'} length","choices":["2-3 short player options"],"newFacts":["only truly important lasting facts, usually empty"],"summary":"updated 2-4 sentence timeline of the story so far, in the output language"}`}
+async function step(action){if(busy)return;busy=true;AB=new AbortController();$('#ch').innerHTML=`<div class="load">${t('thinking')}</div><button class="btn sm" onclick="AB.abort()">${ST.lang=='ru'?'Отменить':'Cancel'}</button>`;
+ if(action&&S.turn>0||S.scene.length)S.scene.push({who:S.player.name,text:action});
+ let smp=null;try{if(ST.prov!=='openai')smp=await claude.use('sample')}catch(e){}
+ if(!smp&&ST.prov!=='openai'){busy=false;$('#ch').innerHTML=`<div class="err">${t('noai')}</div>`;return}
+ try{const r=ST.prov==='openai'?{text:await askO(prompt(action),AB.signal)}:await smp(prompt(action),{cache:false,modelTier:'default',signal:AB.signal});
+  let tx=(r.text||'').replace(/```json|```/g,'').trim();const a=tx.indexOf('{'),b=tx.lastIndexOf('}');const j=JSON.parse(tx.slice(a,b+1));
+  const c=CH.find(x=>x.id===S.char);
+  if(BG.some(x=>x.id===j.bg))S.bg=j.bg;if(c.sp.some(x=>x.id===j.sprite))S.sprite=j.sprite;
+  if(Array.isArray(j.newFacts))j.newFacts.slice(0,2).forEach(f=>{if(f&&!S.facts.some(x=>x.t===f))S.facts.push({t:f,pin:false})});
+  if(j.summary)S.summary=j.summary;
+  S.scene.push({who:j.who||'',text:j.text});if(S.scene.length>14)S.scene=S.scene.slice(-14);
+  S.cur={who:j.who||'',text:j.text,cam:['zoom','shake','flash'].includes(j.cam)?j.cam:'',choices:(j.choices||[]).slice(0,3)};S.turn++;save();busy=false;startGame();
+ }catch(e){busy=false;$('#ch').innerHTML=`<div class="err">${t('err')} <button class="btn sm" onclick="step(${JSON.stringify(action).replace(/"/g,'&quot;')})">${t('retry')}</button></div>`}}
+/* ===== v2: style, bat menu, carousel, camera ===== */
+let AB,pi=0,clk=[],tx0=0;
+const _set=settings,_ap=applySt,_show=show;
+applySt=function(){document.documentElement.dataset.anim=ST.anim===false?'off':'on';_ap()};
+settings=function(){const r=ST.lang=='ru',o=(k,a,b)=>`<div class="row"><label><input type="checkbox" ${ST[k]!==false?'checked':''} onchange="ST['${k}']=this.checked;applySt()"> ${r?a:b}</label></div>`;return _set()+`<h3>${r?'Анимации и эффекты':'Animation & effects'}</h3><div class="card">${o('anim','Анимации интерфейса и спрайтов','UI & sprite animations')}${o('cam','Эффекты камеры (приближение, тряска, вспышка)','Camera effects (zoom, shake, flash)')}</div>`};
+function cam(k){if(ST.cam===false||!k)return;const s=$('#stage');if(!s)return;s.classList.remove('zoom','shake','flash');void s.offsetWidth;s.classList.add(k)}
+show=function(c){_show(c);cam(c.cam)};
+const W='M64 28C80 14 100 8 116 12C112 22 108 28 106 36C101 32 97 33 94 40C90 35 84 36 80 44C76 40 70 41 66 50L62 46Z';
+const BAT=`<svg class="bat" viewBox="0 0 120 70"><g fill="#8a1220"><g class="wg"><path d="${W}"/></g><g transform="translate(120 0) scale(-1 1)"><g class="wg"><path d="${W}"/></g></g><path d="M54 21L53 8L59 17Z"/><path d="M66 21L67 8L61 17Z"/><ellipse cx="60" cy="37" rx="7.5" ry="15"/><circle cx="60" cy="23" r="7"/><g class="eye" fill="#d8cfc0"><circle cx="57.4" cy="22" r="1.5"/><circle cx="62.6" cy="22" r="1.5"/></g><path class="br" d="M53.8 18.2L58.8 20.4M66.2 18.2L61.2 20.4" stroke="#140d0f" stroke-width="1.6" stroke-linecap="round" fill="none"/></g></svg>`;
+function bt(e){const b=e.target.closest('.mb .btn'),w=$('.bw');if(b&&w)w.style.transform='translateY('+(b.offsetTop-12)+'px)'}
+menu=function(){const r=ST.lang=='ru',B=(f,k)=>`<button class="btn" onclick="click();${f}">${t(k)}</button>`;return `<h1>${t('title')}</h1><div class="sub">${r?'повесть о ночи и старом особняке':'a tale of night and an old mansion'}</div><div class="div"></div><div class="mm" onmouseover="bt(event)"><div class="bw">${BAT}</div><div class="mb">${S?B("go('game')",'cont'):''}${B("go('pick')",'start')}${B("go('chars')",'chars')}${B("go('archive')",'archive')}${B("go('settings')",'settings')}</div></div>`};
+function pg(d){pi=(pi+CH.length+d)%CH.length;render()}
+pick=function(){const c=CH[pi],s=c.sp[0];return `<div class="top">${back()}</div><h2 class="ttl">${t('pick')}</h2><div class="car"><button class="arr" onclick="click();pg(-1)">‹</button><div class="big" style="background:${c.c}">${SPIMG[s.id]?`<img src="${SPIMG[s.id]}">`:`<span>${nm(c)}</span>`}</div><button class="arr" onclick="click();pg(1)">›</button></div><div class="dots">${CH.map((x,i)=>i==pi?'◆':'◇').join(' ')}</div><div class="card"><h3>${nm(c)} <span class="mut" style="font-size:.6em">${c.pron}</span></h3><p style="margin:4px 0 8px">${ds(c)}</p><button class="btn" onclick="click();pickC('${c.id}')">${t('start')}</button></div>`};
+addEventListener('keydown',e=>{if(scr==='pick'){if(e.key==='ArrowLeft')pg(-1);if(e.key==='ArrowRight')pg(1)}});
+addEventListener('touchstart',e=>{tx0=e.touches[0].clientX},{passive:true});
+addEventListener('touchend',e=>{if(scr==='pick'){const d=e.changedTouches[0].clientX-tx0;if(Math.abs(d)>50)pg(d<0?1:-1)}});
+const cv=document.createElement('canvas');cv.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:99';document.body.appendChild(cv);
+const cx=cv.getContext('2d'),SP=new Path2D('M0 -1Q.14 -.14 1 0Q.14 .14 0 1Q-.14 .14 -1 0Q-.14 -.14 0 -1Z'),P=[];
+function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+addEventListener('pointerdown',e=>{if(ST.anim!==false)for(let i=0;i<15;i++){const a=Math.random()*6.28,v=1.5+Math.random()*5;P.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*v,vy:Math.sin(a)*v,s:5+Math.random()*15,r:0,vr:Math.random()*.2-.1,l:1,c:['#8a1220','#a3202f','#b5303f','#6e0f1a'][i%4]})}
+ const n=Date.now();clk=clk.filter(x=>n-x<900);clk.push(n);if(clk.length>=3){clk=[];const b=$('.bat');if(b){b.classList.add('mad');setTimeout(()=>b.classList.remove('mad'),1300)}}});
+(function lp(){cx.clearRect(0,0,cv.width,cv.height);for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.vx*=.985;p.vy*=.985;p.r+=p.vr;p.l-=.017;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.scale(p.s/2,p.s/2);cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.fill(SP);cx.restore()}for(let i=P.length;i--;)if(P[i].l<=0)P.splice(i,1);requestAnimationFrame(lp)})();
+async function askO(p,sig){const u=(ST.url||'https://api.openai.com/v1').replace(/\/$/,'');
+ if(!ST.model)throw new Error('model');
+ const r=await fetch(u+'/chat/completions',{method:'POST',signal:sig,headers:{'Content-Type':'application/json','Authorization':'Bearer '+(ST.key||'')},body:JSON.stringify({model:ST.model,messages:[{role:'user',content:p}]})});
+ if(!r.ok)throw new Error(r.status);const d=await r.json();return d.choices[0].message.content}
+const _set2=settings;
+settings=function(){const r=ST.lang=='ru',v=k=>(ST[k]||'').replace(/"/g,'&quot;'),f='style="width:100%;background:var(--panel);border:2px solid var(--ink);padding:8px"';
+return _set2()+`<h3>${r?'Нейросеть':'AI provider'}</h3><div class="card"><div class="row"><label>${r?'Источник':'Source'}<select onchange="ST.prov=this.value;applySt()"><option value="openai" ${ST.prov!=='claude'?'selected':''}>OpenAI-compatible (API)</option><option value="claude" ${ST.prov==='claude'?'selected':''}>Claude (только внутри claude.ai)</option></select></label></div>
+<div class="row"><label>API URL<input type="text" value="${v('url')||'https://api.openai.com/v1'}" onchange="ST.url=this.value;applySt()"></label></div>
+<div class="row"><label>${r?'Название модели':'Model name'}<input type="text" value="${v('model')}" onchange="ST.model=this.value.trim();applySt()"></label></div>
+<div class="row"><label>API key<input type="password" ${f} value="${v('key')}" onchange="ST.key=this.value.trim();applySt()"></label></div>
+<div class="mut">${r?'Ключ хранится только в вашем браузере и не попадает в экспорт.':'The key stays in your browser only and is not included in exports.'}</div></div>`};
+render();
+</script>
+</body>
+</html>
