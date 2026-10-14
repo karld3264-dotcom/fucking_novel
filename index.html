@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Visual Novel — Beta</title>
+<title>OFF ✠ COURSE</title>
 <style>
 :root{--bg:#efe6dc;--panel:#f7f0e8;--ink:#2a1a1f;--acc:#6b1e2e;--acc2:#b08d57;--mut:#7a6a68;--line:#c9b8a6;--op:.88;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 :root[data-theme=dark]{--bg:#17101a;--panel:#241a29;--ink:#eadfe2;--acc:#c9566b;--acc2:#c9a86a;--mut:#9d8d98;--line:#463748}
@@ -81,6 +81,60 @@ h1{font-size:42px;margin:0;text-align:left}h2{font-size:34px}h3{font-size:25px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 [data-anim=off] *{animation:none!important;transition:none!important}
 @media(max-width:560px){#app{padding:44px 18px}h1{font-size:36px}.mb{margin-left:100px}.bw,.bat{width:84px}.arr{width:34px}}
+#spr img{object-fit:contain}
+.car{gap:6px}.side{flex:0 0 17%;height:min(40vh,330px);opacity:.5;scale:.88;cursor:pointer;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Pirata One',serif;font-size:18px;overflow:hidden;text-align:center}.side img{height:100%;object-fit:contain}
+.car.r>.side,.car.r>.big{animation:sr .45s ease-out}.car.l>.side,.car.l>.big{animation:sl .45s ease-out}
+@keyframes sr{from{translate:80px 0;opacity:0}}@keyframes sl{from{translate:-80px 0;opacity:0}}
+@media(max-width:560px){.side{flex-basis:13%;font-size:13px}}
+.edge{position:fixed;top:0;bottom:0;z-index:50;pointer-events:none;display:none}.edge.L{left:0}.edge.R{right:0}
+.edge .tab{position:absolute;top:50%;margin-top:-80px;width:30px;height:160px;pointer-events:auto;cursor:pointer}.edge.L .tab{left:0}.edge.R .tab{right:0}
+.edge .tab svg{width:30px;height:160px;animation:ngl 1.8s ease-in-out infinite}.edge.R .tab svg{animation-name:ngr}
+@keyframes ngl{50%{transform:translateX(5px)}}@keyframes ngr{50%{transform:translateX(-5px)}}
+.edge.new .tab svg{filter:drop-shadow(0 0 7px #d0243a)}
+.pn{position:absolute;top:7vh;height:86vh;width:min(350px,92vw);pointer-events:auto;background:#140d0f;color:#d8cfc0;border:2px solid #8a1220;box-shadow:0 0 0 4px #140d0f,0 10px 40px rgba(0,0,0,.6);transition:transform .5s cubic-bezier(.3,1.3,.5,1);display:flex;flex-direction:column;padding:10px;overflow:hidden}
+.edge.L .pn{left:10px;transform:translateX(-125%)}.edge.R .pn{right:10px;width:min(430px,92vw);transform:translateX(125%)}
+.edge:hover .pn,.edge.open .pn{transform:none}
+.pn h3{color:#b5303f;margin:0 0 6px}.pn .mut{color:#b3a999}
+.pn .btn{background:#d8cfc0;color:#140d0f;border-color:#d8cfc0}.pn .btn:hover{border-color:#8a1220}
+.pn input[type=text]{background:#e8e0d2;color:#140d0f;border:2px solid #140d0f}
+.pc{display:block;width:100%;text-align:left;background:#241719;color:#d8cfc0;border:1px solid #55101a;padding:8px;margin:5px 0;position:relative}.pc:hover{border-color:#8a1220}
+.bdg{position:absolute;right:8px;top:8px;background:#8a1220;padding:0 7px}
+#phm{flex:1;overflow:auto;display:flex;flex-direction:column;padding:4px}
+.bb{max-width:82%;padding:6px 10px;margin:4px 0;border:1px solid #55101a}.bb.c{background:#2e1d20;align-self:flex-start}.bb.p{background:#8a1220;align-self:flex-end}
+.mapa{position:relative;height:55%;min-height:200px;border:2px solid #8a1220;margin:4px 0 8px;overflow:hidden;background:url(img/map.webp) center/cover,radial-gradient(ellipse at 50% 40%,#2e1d20,#17101a)}
+.dot{position:absolute;width:16px;height:16px;transform:translate(-50%,-50%) rotate(45deg);background:#8a1220;border:2px solid #d8cfc0;cursor:pointer}.dot.lk{background:#3a2a2e;border-color:#7a6a68}.dot.cur{box-shadow:0 0 0 4px #b5303f}
+.lbl{position:absolute;transform:translate(-50%,14px);font-family:'Pirata One',serif;font-size:14px;white-space:nowrap;pointer-events:none}
+.mapa i{position:absolute;right:6px;bottom:4px;font-size:11px;color:#7a6a68}
+details.card summary{cursor:pointer;font-family:'Pirata One',serif;font-size:1.3em}
+h1{text-align:left;font-size:clamp(34px,8.4vw,86px);line-height:1;white-space:nowrap;margin:0 0 4px;letter-spacing:.04em}
+.mm{max-width:760px}
+.mb{width:min(360px,100%);margin:0 auto}
+.bw{left:max(0px,calc(50% - 180px - 126px))}
+@media(max-width:700px){.mb{width:auto;margin:0 0 0 100px}.bw{left:0}}
+.ttlw{position:relative;display:inline-block;max-width:100%}
+.gt{background:linear-gradient(180deg,#d0243a 0%,#8a1220 52%,#55101a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 0 #140d0f)}
+.st{position:absolute;transform:translate(-50%,-50%);animation:tw 3s ease-in-out infinite;pointer-events:none}
+@keyframes tw{0%,100%{scale:.3;opacity:.3}50%{scale:1;opacity:1}}
+.arcs{position:relative;padding-top:64px;margin:6px 0 10px}
+.r3{display:flex;gap:clamp(6px,1.6vw,16px);align-items:flex-end;justify-content:center}
+.arch{position:relative;flex:1 1 0;max-width:230px;aspect-ratio:1/1.9;border-radius:999px 999px 0 0;border:2px solid #8a1220;box-shadow:0 0 0 3px #140d0f,0 0 0 4px #b3a999;background:var(--m),radial-gradient(ellipse at 50% 30%,rgba(138,18,32,.4),transparent 62%),linear-gradient(#241719,#140d0f);background-size:cover;background-position:center;cursor:pointer;transition:transform .3s,box-shadow .3s;overflow:hidden}
+.arch.c{max-width:262px;flex-grow:1.12;aspect-ratio:1/2.3}
+.arch:hover{transform:translateY(-5px);box-shadow:0 0 0 3px #140d0f,0 0 0 4px #8a1220,0 0 26px rgba(181,48,63,.5)}.arch:active{transform:scale(.98)}
+.arch:after{content:'';position:absolute;inset:7px;border:1px solid #55101a;border-radius:999px 999px 0 0;pointer-events:none}
+.al{position:absolute;left:0;right:0;bottom:12%;text-align:center;font-family:'Pirata One',serif;font-size:clamp(15px,3vw,30px);color:#d8cfc0;letter-spacing:.06em;line-height:1.1;padding:0 6px;text-shadow:0 2px 6px #140d0f}
+.al:before{content:'';display:block;width:8px;height:8px;background:#8a1220;transform:rotate(45deg);margin:0 auto 8px}
+.arch.c .al{font-size:clamp(17px,3.6vw,36px)}
+.cs{position:absolute;left:0;top:0;width:100%;pointer-events:none;animation:pop .7s ease-out;z-index:2}
+.cs text{font-family:'Pirata One',serif;font-size:24px;fill:#d8cfc0;letter-spacing:3px;cursor:pointer;pointer-events:all}.cs text:hover{fill:#b5303f}
+.bw2{position:absolute;left:0;top:0;width:84px;transition:transform .7s cubic-bezier(.3,1.3,.5,1);pointer-events:none}.bw2 .bat{width:84px}
+.tw{position:relative;text-align:center;margin-bottom:6px}.tw .ttlw{display:inline-block;max-width:100%}
+.gt{text-align:center;font-size:clamp(34px,9.2vw,96px);margin:0}
+.gt .cx{height:.8em;width:auto;vertical-align:-.06em;margin:0 .1em;-webkit-text-fill-color:initial}
+.em{position:absolute;top:50%;margin-top:-20px;width:clamp(26px,5vw,44px);height:auto;animation:spn 24s linear infinite}.em.l{left:0}.em.r{right:0}
+@keyframes spn{to{rotate:360deg}}
+.dv{display:block;width:min(560px,92%);margin:8px auto}
+.ak{position:absolute;left:50%;top:26.3%;width:36%;transform:translate(-50%,-50%);opacity:.85;pointer-events:none}.arch.c .ak{top:21.7%}
+.al:before{width:92px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 12'%3E%3Cpath d='M0 6H34M56 6H90' stroke='%238a1220'/%3E%3Cpath d='M45 1L50 6L45 11L40 6Z' fill='%238a1220'/%3E%3Cpath d='M36 6l3-2 3 2-3 2zM48 6l3-2 3 2-3 2z' fill='%23b5303f'/%3E%3C/svg%3E") center/contain no-repeat;transform:none;margin:0 auto 8px}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Pirata+One&display=swap" rel="stylesheet">
 </head>
@@ -104,12 +158,12 @@ const BGIMG={};/* e.g. BGIMG.hall='data:image/webp;base64,...' */
 const SPIMG={};/* e.g. SPIMG.liara_smile='data:image/webp;base64,...' */
 
 /* ===== i18n ===== */
-const L={ru:{title:'Мини-новелла',start:'Начать игру',cont:'Продолжить',settings:'Настройки',archive:'Архив',chars:'Персонажи',back:'← Назад',pick:'Выберите персонажа',create:'Создание героя',name:'Имя',pron:'Местоимения',trait:'Характер (коротко)',go:'Начать',custom:'Свой вариант…',send:'Отправить',pin:'Запомнить',thinking:'Нейросеть думает…',
+const L={ru:{title:'OFF ⌑ COURSE',start:'Начать игру',cont:'Продолжить',settings:'Настройки',archive:'Архив',chars:'Персонажи',back:'← Назад',pick:'Выберите персонажа',create:'Создание героя',name:'Имя',pron:'Местоимения',trait:'Характер (коротко)',go:'Начать',custom:'Свой вариант…',send:'Отправить',pin:'Запомнить',thinking:'Нейросеть думает…',
  music:'Громкость музыки',sfx:'Громкость эффектов',speed:'Скорость текста',font:'Размер шрифта',lang:'Язык',theme:'Тема',light:'Светлая',dark:'Тёмная',opac:'Прозрачность диалога',
  ai:'Поведение нейросети',d1:'Описания: кратко ↔ подробно',d2:'Диалоги: кратко ↔ подробно',d3:'Баланс: описания ↔ диалоги ↔ действия',d4:'Самостоятельность ИИ в сюжете',d5:'Неожиданные события',d6:'Режим',free:'Свободная генерация',seq:'Последовательное развитие отношений',pc:'Поведение персонажей (своими словами)',
  f1:'Основные факты (постоянная память)',f1d:'То, что нельзя забывать даже спустя сотни сообщений.',f2:'Краткая хронология (обновляемая память)',f2d:'Сводка последних событий и развития отношений.',f3:'Контекст текущей сцены (временная память)',f3d:'Последние реплики и обстоятельства. Сворачивается при смене сцены.',
  addf:'+ Добавить факт',exp:'Экспорт сохранения',imp:'Импорт (вставить JSON)',doimp:'Загрузить',clr:'Очистить историю',newg:'Новая игра',sure:'Точно? Это нельзя отменить.',pinned:'Закреплено',noai:'Нейросеть недоступна в этом режиме. Проверьте, что страница открыта через claude.ai.',menu:'В меню',err:'Ошибка ответа ИИ, попробуйте ещё раз.',retry:'Повторить',empty:'пока пусто',tune:'Кратко',tune2:'Подробно',srt:'Свернуть сцену в резюме'},
- en:{title:'Mini Novel',start:'New game',cont:'Continue',settings:'Settings',archive:'Archive',chars:'Characters',back:'← Back',pick:'Choose a character',create:'Create your hero',name:'Name',pron:'Pronouns',trait:'Personality (short)',go:'Start',custom:'Your own reply…',send:'Send',pin:'Remember',thinking:'The AI is thinking…',
+ en:{title:'OFF ⌑ COURSE',start:'New game',cont:'Continue',settings:'Settings',archive:'Archive',chars:'Characters',back:'← Back',pick:'Choose a character',create:'Create your hero',name:'Name',pron:'Pronouns',trait:'Personality (short)',go:'Start',custom:'Your own reply…',send:'Send',pin:'Remember',thinking:'The AI is thinking…',
  music:'Music volume',sfx:'Effects volume',speed:'Text speed',font:'Font size',lang:'Language',theme:'Theme',light:'Light',dark:'Dark',opac:'Dialogue box opacity',
  ai:'AI behaviour',d1:'Descriptions: brief ↔ detailed',d2:'Dialogue: brief ↔ detailed',d3:'Balance: description ↔ dialogue ↔ action',d4:'AI plot initiative',d5:'Unexpected events',d6:'Mode',free:'Free generation',seq:'Steady relationship development',pc:'Character behaviour (in your words)',
  f1:'Core facts (permanent memory)',f1d:'What must never be forgotten, even after hundreds of messages.',f2:'Short timeline (updating memory)',f2d:'Summary of recent events and relationship development.',f3:'Current scene context (temporary memory)',f3d:'Latest lines and circumstances. Collapsed into a summary on scene change.',
@@ -163,7 +217,7 @@ function create(){return `<div class="top">${back()}<h2>${t('create')}</h2></div
 const PREM={ru:'Холодный вечер. Герой получает приглашение в старый особняк на окраине города. Дверь открывается сама, внутри горит свет.',en:'A cold evening. The hero receives an invitation to an old mansion on the edge of town. The door opens by itself and lights glow inside.'};
 function newGame(){if(!$('#pn'))return;const n=$('#pn').value.trim()||(ST.lang=='ru'?'Герой':'Hero');
  S={player:{name:n,pron:$('#pp').value,trait:$('#pt').value.trim()},char:pk,facts:[],summary:'',scene:[],bg:'hall',sprite:pk+'_neutral',turn:0,cur:null,premise:PREM[ST.lang]};
- S.cur={who:'',text:S.premise,choices:[]};save();go('game');}
+ ens();S.unl=['hall'];introSet(0);save();go('game');}
 /* ===== archive ===== */
 function factRow(f,i){return `<div class="fact"><button class="pin" title="${t('pinned')}" onclick="S.facts[${i}].pin=!S.facts[${i}].pin;save();render()">${f.pin?'📌':'▫️'}</button><input type="text" value="${f.t.replace(/"/g,'&quot;')}" onchange="S.facts[${i}].t=this.value;save()"><button class="pin" onclick="S.facts.splice(${i},1);save();render()">✕</button></div>`}
 function archive(){const tabs=['f1','f2','f3'].map(k=>`<button class="btn sm" style="${tab==k?'background:var(--acc);color:#fff':''}" onclick="tab='${k}';render()">${t(k).split(' (')[0]}</button>`).join('');
@@ -193,7 +247,7 @@ function startGame(){const b=BG.find(x=>x.id===S.bg)||BG[0];const st=$('#stage')
 let curTxt='';
 function show(c){const who=c.who==='_player'?S.player.name:c.who;$('#who').textContent=who||'';curTxt=c.text||'';const el=$('#txt');el.textContent='';let i=0;typing=true;$('#ch').innerHTML='';
  const ms=Math.max(6,110-ST.speed);clearInterval(tw);
- tw=setInterval(()=>{i++;el.textContent=curTxt.slice(0,i);if(i%3==0&&curTxt[i-1]!==' ')blip(who?(S.char&&who.indexOf(S.player.name)==0?300:420):240,.04,.6);if(i>=curTxt.length)done()},ms);
+ tw=setInterval(()=>{i++;el.textContent=curTxt.slice(0,i);if(i%3==0&&curTxt[i-1]!==' ')blip(pitch(who),.04,.6);if(i>=curTxt.length)done()},ms);
  if(!curTxt)done();}
 function skip(){if(typing){clearInterval(tw);$('#txt').textContent=curTxt;done()}}
 function done(){clearInterval(tw);typing=false;if(!$('#ch'))return;const c=S.cur;const ch=(c.choices||[]);
@@ -223,19 +277,19 @@ AVAILABLE BACKGROUNDS (use only these ids):\n${bgs}
 AVAILABLE SPRITES (use only these ids):\n${sps}
 PLAYER ACTION: ${action}
 Return JSON: {"cam":"none|zoom|shake|flash (rare, only for dramatic moments)","bg":id,"sprite":id,"who":"speaker name or empty for narration","text":"1 beat of the scene, ${ST.d1+ST.d2<=4?'short':'medium'} length","choices":["2-3 short player options"],"newFacts":["only truly important lasting facts, usually empty"],"summary":"updated 2-4 sentence timeline of the story so far, in the output language"}`}
-async function step(action){if(busy)return;busy=true;AB=new AbortController();$('#ch').innerHTML=`<div class="load">${t('thinking')}</div><button class="btn sm" onclick="AB.abort()">${ST.lang=='ru'?'Отменить':'Cancel'}</button>`;
+async function step(action){if(busy)return;busy=true;t0=performance.now();tf=0;live=false;AB=new AbortController();$('#ch').innerHTML=`<div class="load">${t('thinking')}</div><button class="btn sm" onclick="AB.abort()">${ST.lang=='ru'?'Отменить':'Cancel'}</button>`;
  if(action&&S.turn>0||S.scene.length)S.scene.push({who:S.player.name,text:action});
  let smp=null;try{if(ST.prov!=='openai')smp=await claude.use('sample')}catch(e){}
  if(!smp&&ST.prov!=='openai'){busy=false;$('#ch').innerHTML=`<div class="err">${t('noai')}</div>`;return}
- try{const r=ST.prov==='openai'?{text:await askO(prompt(action),AB.signal)}:await smp(prompt(action),{cache:false,modelTier:'default',signal:AB.signal});
+ try{const r=ST.prov==='openai'?{text:await askO(prompt(action),AB.signal,onS)}:await smp(prompt(action),{cache:false,modelTier:'default',signal:AB.signal});
   let tx=(r.text||'').replace(/```json|```/g,'').trim();const a=tx.indexOf('{'),b=tx.lastIndexOf('}');const j=JSON.parse(tx.slice(a,b+1));
   const c=CH.find(x=>x.id===S.char);
   if(BG.some(x=>x.id===j.bg))S.bg=j.bg;if(c.sp.some(x=>x.id===j.sprite))S.sprite=j.sprite;
   if(Array.isArray(j.newFacts))j.newFacts.slice(0,2).forEach(f=>{if(f&&!S.facts.some(x=>x.t===f))S.facts.push({t:f,pin:false})});
   if(j.summary)S.summary=j.summary;
   S.scene.push({who:j.who||'',text:j.text});if(S.scene.length>14)S.scene=S.scene.slice(-14);
-  S.cur={who:j.who||'',text:j.text,cam:['zoom','shake','flash'].includes(j.cam)?j.cam:'',choices:(j.choices||[]).slice(0,3)};S.turn++;save();busy=false;startGame();
- }catch(e){busy=false;$('#ch').innerHTML=`<div class="err">${t('err')} [${(e&&e.message)||'?'}] <button class="btn sm" onclick="step(${JSON.stringify(action).replace(/"/g,'&quot;')})">${t('retry')}</button></div>`}}
+  S.cur={who:j.who||'',text:j.text,cam:['zoom','shake','flash'].includes(j.cam)?j.cam:'',choices:(j.choices||[]).slice(0,3)};S.turn++;save();busy=false;if(live)finishLive();else startGame();
+ }catch(e){live=false;busy=false;$('#ch').innerHTML=`<div class="err">${t('err')} [${(e&&e.message)||'?'}] <button class="btn sm" onclick="step(${JSON.stringify(action).replace(/"/g,'&quot;')})">${t('retry')}</button></div>`}}
 /* ===== v2: style, bat menu, carousel, camera ===== */
 let AB,pi=0,clk=[],tx0=0;
 const _set=settings,_ap=applySt,_show=show;
@@ -246,9 +300,11 @@ show=function(c){_show(c);cam(c.cam)};
 const W='M64 28C80 14 100 8 116 12C112 22 108 28 106 36C101 32 97 33 94 40C90 35 84 36 80 44C76 40 70 41 66 50L62 46Z';
 const BAT=`<svg class="bat" viewBox="0 0 120 70"><g fill="#8a1220"><g class="wg"><path d="${W}"/></g><g transform="translate(120 0) scale(-1 1)"><g class="wg"><path d="${W}"/></g></g><path d="M54 21L53 8L59 17Z"/><path d="M66 21L67 8L61 17Z"/><ellipse cx="60" cy="37" rx="7.5" ry="15"/><circle cx="60" cy="23" r="7"/><g class="eye" fill="#d8cfc0"><circle cx="57.4" cy="22" r="1.5"/><circle cx="62.6" cy="22" r="1.5"/></g><path class="br" d="M53.8 18.2L58.8 20.4M66.2 18.2L61.2 20.4" stroke="#140d0f" stroke-width="1.6" stroke-linecap="round" fill="none"/></g></svg>`;
 function bt(e){const b=e.target.closest('.mb .btn'),w=$('.bw');if(b&&w)w.style.transform='translateY('+(b.offsetTop-12)+'px)'}
-menu=function(){const r=ST.lang=='ru',B=(f,k)=>`<button class="btn" onclick="snd();${f}">${t(k)}</button>`;return `<h1>${t('title')}</h1><div class="sub">${r?'повесть о ночи и старом особняке':'a tale of night and an old mansion'}</div><div class="div"></div><div class="mm" onmouseover="bt(event)"><div class="bw">${BAT}</div><div class="mb">${S?B("go('game')",'cont'):''}${B("go('pick')",'start')}${B("go('chars')",'chars')}${B("go('archive')",'archive')}${B("go('settings')",'settings')}</div></div>`};
-function pg(d){pi=(pi+CH.length+d)%CH.length;render()}
-pick=function(){const c=CH[pi],s=c.sp[0];return `<div class="top">${back()}</div><h2 class="ttl">${t('pick')}</h2><div class="car"><button class="arr" onclick="snd();pg(-1)">‹</button><div class="big" style="background:${c.c}">${SPIMG[s.id]?`<img src="${SPIMG[s.id]}">`:`<span>${nm(c)}</span>`}</div><button class="arr" onclick="snd();pg(1)">›</button></div><div class="dots">${CH.map((x,i)=>i==pi?'◆':'◇').join(' ')}</div><div class="card"><h3>${nm(c)} <span class="mut" style="font-size:.6em">${c.pron}</span></h3><p style="margin:4px 0 8px">${ds(c)}</p><button class="btn" onclick="snd();pickC('${c.id}')">${t('start')}</button></div>`};
+menu=function(){const r=ST.lang=='ru',B=(f,k)=>`<button class="btn" onclick="snd();${f}">${t(k)}</button>`;return `<h1>${t('title')}</h1><div class="div"></div><div class="mm" onmouseover="bt(event)"><div class="bw">${BAT}</div><div class="mb">${S?B("go('game')",'cont'):''}${B("go('pick')",'start')}${B("go('chars')",'chars')}${B("go('archive')",'archive')}${B("go('settings')",'settings')}</div></div>`};
+function pg(d){dir=d;pi=(pi+CH.length+d)%CH.length;render()}
+pick=function(){const n=CH.length,c=CH[pi],Lc=CH[(pi+n-1)%n],Rc=CH[(pi+1)%n];
+const box=(x,cls,g)=>{const q=x.sp[0];return `<div class="${cls}" ${g?`onclick="snd();pg(${g})"`:''} style="background:${x.c}">${SPIMG[q.id]?`<img src="${SPIMG[q.id]}">`:`<span>${nm(x)}</span>`}</div>`};
+return `<div class="top">${back()}</div><h2 class="ttl">${t('pick')}</h2><div class="car ${dir>0?'r':'l'}"><button class="arr" onclick="snd();pg(-1)">\u2039</button>${box(Lc,'side',-1)}${box(c,'big',0)}${box(Rc,'side',1)}<button class="arr" onclick="snd();pg(1)">\u203a</button></div><div class="dots">${CH.map((x,i)=>i==pi?'\u25c6':'\u25c7').join(' ')}</div><div class="card"><h3>${nm(c)} <span class="mut" style="font-size:.6em">${c.pron}</span></h3><p style="margin:4px 0 8px">${ds(c)}</p><button class="btn" onclick="snd();pickC('${c.id}')">${t('start')}</button></div>`};
 addEventListener('keydown',e=>{if(scr==='pick'){if(e.key==='ArrowLeft')pg(-1);if(e.key==='ArrowRight')pg(1)}});
 addEventListener('touchstart',e=>{tx0=e.touches[0].clientX},{passive:true});
 addEventListener('touchend',e=>{if(scr==='pick'){const d=e.changedTouches[0].clientX-tx0;if(Math.abs(d)>50)pg(d<0?1:-1)}});
@@ -258,15 +314,21 @@ function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('r
 addEventListener('pointerdown',e=>{if(ST.anim!==false)for(let i=0;i<15;i++){const a=Math.random()*6.28,v=1.5+Math.random()*5;P.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*v,vy:Math.sin(a)*v,s:5+Math.random()*15,r:0,vr:Math.random()*.2-.1,l:1,c:['#8a1220','#a3202f','#b5303f','#6e0f1a'][i%4]})}
  const n=Date.now();clk=clk.filter(x=>n-x<900);clk.push(n);if(clk.length>=3){clk=[];const b=$('.bat');if(b){b.classList.add('mad');setTimeout(()=>b.classList.remove('mad'),1300)}}});
 (function lp(){cx.clearRect(0,0,cv.width,cv.height);for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.vx*=.985;p.vy*=.985;p.r+=p.vr;p.l-=.017;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.scale(p.s/2,p.s/2);cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.fill(SP);cx.restore()}for(let i=P.length;i--;)if(P[i].l<=0)P.splice(i,1);requestAnimationFrame(lp)})();
-async function askO(p,sig){const u=(ST.url||'https://api.openai.com/v1').replace(/\/$/,'');
+async function askO(p,sig,on){const u=(ST.url||'https://api.openai.com/v1').replace(/\/$/,'');
  if(!ST.model)throw new Error('model');
  const RT=[429,500,502,503,504];let last;
  for(let i=0;i<3;i++){
-  const ac=new AbortController(),to=setTimeout(()=>ac.abort(),45000),fw=()=>ac.abort();sig.addEventListener('abort',fw);
-  try{const r=await fetch(u+'/chat/completions',{method:'POST',signal:ac.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+(ST.key||'')},body:JSON.stringify({model:ST.model,messages:[{role:'user',content:p}]})});
-   if(r.ok){const d=await r.json();return d.choices[0].message.content}
+  const ac=new AbortController(),fw=()=>ac.abort();sig.addEventListener('abort',fw);let to=setTimeout(()=>ac.abort(),45000),got=false;
+  try{const r=await fetch(u+'/chat/completions',{method:'POST',signal:ac.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+(ST.key||'')},body:JSON.stringify({model:ST.model,messages:[{role:'user',content:p}],stream:!!on})});
+   if(r.ok){
+    if(!on){const d=await r.json();return d.choices[0].message.content}
+    const rd=r.body.getReader(),dc=new TextDecoder();let buf='',acc='';
+    for(;;){const q=await rd.read();if(q.done)break;got=true;clearTimeout(to);to=setTimeout(()=>ac.abort(),30000);buf+=dc.decode(q.value,{stream:true});
+     const ls=buf.split('\n');buf=ls.pop();
+     for(const l of ls){if(!l.startsWith('data:'))continue;const j=l.slice(5).trim();if(j==='[DONE]')continue;try{const c=JSON.parse(j).choices[0].delta.content;if(c){acc+=c;on(acc)}}catch(e){}}}
+    return acc}
    last=new Error(r.status);if(!RT.includes(r.status))throw last;
-  }catch(e){if(sig.aborted)throw e;last=e;if(/^[0-9]+$/.test(e.message||'')&&!RT.includes(+e.message))throw e}
+  }catch(e){if(sig.aborted||got)throw e;last=e;if(/^[0-9]+$/.test(e.message||'')&&!RT.includes(+e.message))throw e}
   finally{clearTimeout(to);sig.removeEventListener('abort',fw)}
   await new Promise(r=>setTimeout(r,2500*(i+1)));
  }throw last}
@@ -277,6 +339,114 @@ return _set2()+`<h3>${r?'Нейросеть':'AI provider'}</h3><div class="card
 <div class="row"><label>${r?'Название модели':'Model name'}<input type="text" value="${v('model')}" onchange="ST.model=this.value.trim();applySt()"></label></div>
 <div class="row"><label>API key<input type="password" ${f} value="${v('key')}" onchange="ST.key=this.value.trim();applySt()"></label></div>
 <div class="mut">${r?'Ключ хранится только в вашем браузере и не попадает в экспорт.':'The key stays in your browser only and is not included in exports.'}</div></div>`};
+/* ===== v3: intro script, phone, map, lore ===== */
+const T2=(o)=>o[ST.lang];
+const INTRO=[
+{w:'',t:{ru:'Холодный вечер. {p} стоит у ворот старого особняка. Дверь открывается сама, внутри горит свет.',en:'A cold evening. {p} stands at the gates of an old mansion. The door opens by itself, light glowing inside.'}},
+{w:'c',t:{ru:'Вы пришли. Значит, приглашение всё-таки дошло.',en:'You came. So the invitation did arrive.'}},
+{w:'',t:{ru:'{c} внимательно смотрит на вас, ожидая ответа.',en:'{c} studies you, waiting for an answer.'},ch:[{t:{ru:'Письмо было без подписи. Что здесь происходит?',en:'The letter was unsigned. What is going on here?'},to:3},{t:{ru:'Любопытно, что внутри. Покажете дом?',en:'I am curious what is inside. Will you show me around?'},to:4}]},
+{w:'c',t:{ru:'Такое письмо получили многие. Не все дошли до двери. Идёмте, расскажу по пути.',en:'Many received that letter. Not all reached the door. Come, I will explain on the way.'},to:5},
+{w:'c',t:{ru:'Любопытство здесь полезно, но осторожность полезнее. Идёмте.',en:'Curiosity is useful here, caution more so. Come along.'},to:5},
+{w:'',t:{ru:'Дверь тихо закрывается за вашей спиной. В кармане вибрирует телефон: пришло сообщение.',en:'The door closes softly behind you. Your phone vibrates: a new message.'},end:true}];
+function fx(s){const c=CH.find(x=>x.id===S.char);return s.replace(/\{p\}/g,S.player.name).replace(/\{c\}/g,nm(c))}
+function introSet(n){const st=INTRO[n],c=CH.find(x=>x.id===S.char);S.intro=n;const who=st.w=='c'?nm(c):'';
+ S.cur={who,text:fx(T2(st.t)),choices:(st.ch||[{t:{ru:'\u25b8',en:'\u25b8'},to:st.to!=null?st.to:n+1}]).map(o=>T2(o.t))};S.scene.push({who,text:S.cur.text})}
+const _done=done;done=function(){_done();if(S&&S.intro!=null){const r=$('#ch .row');if(r)r.remove()}};
+act=function(i){snd();if(S.intro!=null){const st=INTRO[S.intro],o=(st.ch||[{t:{ru:'\u25b8',en:'\u25b8'},to:st.to!=null?st.to:S.intro+1}])[i];
+  if(st.ch)S.scene.push({who:S.player.name,text:T2(o.t)});
+  if(st.end){S.intro=null;S.cur.choices=[];introEnd();save();done();return}
+  introSet(o.to);save();startGame();return}
+ step(S.cur.choices[i])};
+function introEnd(){edgeUpd();addC(S.char);deliver(S.char,{t:{ru:'Это {c}. Встретимся завтра в саду? Там тише, чем в холле.',en:'It is {c}. Meet tomorrow in the garden? It is quieter than the hall.'},o:[{t:{ru:'Да, буду там.',en:'Yes, I will be there.'},r:{ru:'Хорошо. Жду.',en:'Good. I will be waiting.'},set:'garden'},{t:{ru:'Посмотрим.',en:'We will see.'},r:{ru:'Как знаешь. Калитка сада не заперта.',en:'As you wish. The garden gate is unlocked.'},set:'garden'}]})}
+function ens(){S.flags=S.flags||{};S.unl=S.unl||['hall'];S.cts=S.cts||[];S.chats=S.chats||{};S.pend=S.pend||{};S.un=S.un||{};S.notes=S.notes||[];S.vis=S.vis||{};S.loc=S.loc||'hall'}
+function addC(id){ens();if(!S.cts.includes(id))S.cts.push(id)}
+function unlockLoc(x){ens();if(!S.unl.includes(x))S.unl.push(x)}
+function deliver(id,n){ens();const c=CH.find(x=>x.id===id);(S.chats[id]=S.chats[id]||[]).push({f:'c',t:T2(n.t).replace(/\{c\}/g,nm(c))});S.pend[id]=n.o||null;S.un[id]=(S.un[id]||0)+1;const w=$('#phw');if(w)w.classList.add('new');save();if(PV.v=='list'||PV.id==id)phRender()}
+function noteClr(){const w=$('#phw');if(w)w.classList.remove('new')}
+function pickOpt(id,i){const o=S.pend[id][i];S.chats[id].push({f:'p',t:T2(o.t)},{f:'c',t:T2(o.r)});S.pend[id]=null;if(o.set)unlockLoc(o.set);save();phRender()}
+async function aiText(p){if(ST.prov==='openai')return askO(p,new AbortController().signal);const sm=await claude.use('sample');return (await sm(p,{cache:false,modelTier:'default'})).text}
+let PV={v:'list',id:null},pbusy=false,MS=null;
+async function sendC(id){if(pbusy)return;const i=$('#pin1'),v=i&&i.value.trim();if(!v)return;S.chats[id].push({f:'p',t:v});pbusy=true;phRender();
+ const c=CH.find(x=>x.id==id),h=S.chats[id].slice(-8).map(m=>(m.f=='p'?S.player.name:nm(c))+': '+m.t).join('\n');
+ try{const tx=(await aiText(`Roleplay as ${nm(c)} (${c.pron}). ${ds(c)} Extra behaviour: ${ST.pc[c.id]||'none'}. You are texting with ${S.player.name}. Language: ${ST.lang=='ru'?'Russian':'English'}. Story so far: ${S.summary||'just started'}. Core facts: ${S.facts.map(f=>f.t).join('; ')||'none'}.\nChat:\n${h}\nReply with ONLY the next text message from ${nm(c)}: 1-2 short sentences, plain text, no quotes.`)).trim();S.chats[id].push({f:'c',t:tx})}
+ catch(e){S.chats[id].push({f:'c',t:'\u2026 ['+((e&&e.message)||'?')+']'})}
+ pbusy=false;save();phRender()}
+function phRender(){const e=$('#phs');if(!e||!S)return;ens();const r=ST.lang=='ru';
+ let b=`<div class="tabs" style="margin:0 0 6px"><button class="btn sm" onclick="PV.v='list';phRender()">${r?'Чаты':'Chats'}</button><button class="btn sm" onclick="PV.v='notes';phRender()">${r?'Заметки':'Notes'}</button></div>`;
+ if(PV.v=='notes')b+=`<div id="phm">${S.notes.map((n,i)=>`<div class="fact"><span style="flex:1">${n}</span><button class="pin" onclick="S.notes.splice(${i},1);save();phRender()">\u2715</button></div>`).join('')||`<div class="mut">${r?'пока пусто':'empty yet'}</div>`}</div><div class="row"><input type="text" id="nin" onkeydown="if(event.key=='Enter')addN()"><button class="btn sm" onclick="addN()">+</button></div>`;
+ else if(PV.v=='chat'){const id=PV.id,c=CH.find(x=>x.id==id),pe=S.pend[id];
+  b+=`<h3>${nm(c)}</h3><div id="phm">${(S.chats[id]||[]).map(m=>`<div class="bb ${m.f}">${m.t}</div>`).join('')}${pbusy?'<div class="mut">\u2026</div>':''}</div>`+(pe?pe.map((o,i)=>`<button class="btn sm" style="display:block;margin:3px 0;width:100%" onclick="pickOpt('${id}',${i})">${T2(o.t)}</button>`).join(''):`<div class="row"><input type="text" id="pin1" onkeydown="if(event.key=='Enter')sendC('${id}')"><button class="btn sm" onclick="sendC('${id}')">${t('send')}</button></div>`)}
+ else b+=`<h3>${r?'Мессенджер':'Messenger'}</h3>`+(S.cts.map(id=>{const c=CH.find(x=>x.id==id),m=(S.chats[id]||[]).slice(-1)[0];return `<button class="pc" onclick="PV.v='chat';PV.id='${id}';S.un['${id}']=0;noteClr();phRender()"><b>${nm(c)}</b>${S.un[id]?`<span class="bdg">${S.un[id]}</span>`:''}<div class="mut">${m?m.t.slice(0,48):''}</div></button>`}).join('')||`<div class="mut">${r?'Контактов пока нет':'No contacts yet'}</div>`);
+ e.innerHTML=b;const m=$('#phm');if(m)m.scrollTop=m.scrollHeight}
+function addN(){const i=$('#nin');if(i&&i.value.trim()){S.notes.push(i.value.trim());save();phRender()}}
+const LOC=[
+{id:'hall',n:{ru:'Холл особняка',en:'Mansion hall'},d:{ru:'Высокий холл с затухающим камином. Отсюда всё начинается.',en:'A tall hall with a dying fire. Everything begins here.'},x:28,y:68,bg:'hall',w:['*'],ev:[{id:'look',k:'auth',t:{ru:'Осмотреть холл',en:'Look around'},x:{ru:'На стенах портреты без подписей. У одного нет лица.',en:'Unsigned portraits line the walls. One has no face.'}},{id:'talk',k:'free',t:{ru:'Поговорить (ИИ)',en:'Talk (AI)'}}]},
+{id:'garden',n:{ru:'Ночной сад',en:'Night garden'},d:{ru:'Влажный сад с розами. Тихо, слышно только, как капает с листьев.',en:'A damp garden of roses. Quiet but for dripping leaves.'},x:66,y:30,bg:'garden',w:['mor','*'],h:{ru:'Откроется после сообщения',en:'Opens after a message'},ev:[{id:'rose',k:'auth',t:{ru:'Осмотреть розы',en:'Examine the roses'},x:{ru:'Под кустами тропинка к боковой двери дома. Её раньше не было видно.',en:'Under the bushes lies a path to a side door. It was hidden before.'},set:'room',flag:'rose'},{id:'talk',k:'free',t:{ru:'Поговорить (ИИ)',en:'Talk (AI)'}}]},
+{id:'room',n:{ru:'Уютная комната',en:'Cosy room'},d:{ru:'Маленькая комната с тёплым светом и старыми книгами.',en:'A small room with warm light and old books.'},x:72,y:72,bg:'room',w:['*'],h:{ru:'Найдите путь в саду',en:'Find a path in the garden'},ev:[{id:'search',k:'cond',req:'rose',t:{ru:'Осмотреть стены',en:'Search the walls'},x:{ru:'За шкафом обнаруживается лестница вниз. Открылся погреб.',en:'Behind a shelf is a stairway down. The cellar is open.'},set:'cellar'},{id:'talk',k:'free',t:{ru:'Поговорить (ИИ)',en:'Talk (AI)'}}]},
+{id:'cellar',hid:1,n:{ru:'Погреб',en:'Cellar'},d:{ru:'Сырой погреб. Здесь пахнет воском и старыми тайнами.',en:'A damp cellar smelling of wax and old secrets.'},x:20,y:26,bg:'room',w:[],ev:[{id:'look',k:'auth',t:{ru:'Осмотреться',en:'Look around'},x:{ru:'На полу выцветший круг из мела. Кто-то стирал его в спешке.',en:'A faded chalk circle on the floor, hastily rubbed out.'}}]}];
+function mpRender(){const e=$('#mps');if(!e||!S)return;ens();const r=ST.lang=='ru';MS=MS||S.loc;const sel=LOC.find(x=>x.id==MS),ul=l=>S.unl.includes(l.id);
+ const dots=LOC.filter(l=>!l.hid||ul(l)).map(l=>`<div class="dot ${ul(l)?'':'lk'} ${S.loc==l.id?'cur':''}" style="left:${l.x}%;top:${l.y}%" onclick="MS='${l.id}';mpRender()"></div><div class="lbl" style="left:${l.x}%;top:${l.y}%">${ul(l)?T2(l.n):'???'}</div>`).join('');
+ let inf;if(!ul(sel))inf=`<h3>???</h3><div class="mut">\ud83d\udd12 ${sel.h?T2(sel.h):''}</div>`;
+ else{const who=sel.w.map(x=>nm(CH.find(c=>c.id==(x=='*'?S.char:x)))).join(', ');
+  inf=`<h3>${T2(sel.n)}</h3><div>${T2(sel.d)}</div><div class="mut">${r?'Здесь':'Present'}: ${who||'\u2014'}</div>`+(S.loc!=sel.id?`<button class="btn sm" onclick="goLoc('${sel.id}')">${r?'Идти сюда':'Go here'}</button>`:`<div class="mut">${r?'Вы здесь':'You are here'}</div>`)+sel.ev.filter(v=>!v.req||S.flags[v.req]).map(v=>`<button class="btn sm" ${S.loc!=sel.id?'disabled style="opacity:.4"':''} onclick="evt('${sel.id}','${v.id}')">${T2(v.t)}</button>`).join('')}
+ e.innerHTML=`<h3>${r?'Карта':'Map'}</h3><div class="mapa">${dots}<i>${r?'заглушка':'placeholder'}</i></div><div style="overflow:auto">${inf}</div>`}
+function closeP(){document.querySelectorAll('.edge').forEach(x=>x.classList.remove('open'))}
+function goLoc(id){ens();const L=LOC.find(x=>x.id==id),first=!S.vis[id];S.loc=id;S.bg=L.bg;S.vis[id]=1;S.cur={who:'',text:T2(L.d),choices:[]};S.scene.push({who:'',text:'['+T2(L.n)+'] '+T2(L.d)});
+ if(id=='garden'&&first&&!S.flags.mor){S.flags.mor=1;addC('mor');deliver('mor',{t:{ru:'Ты в моём саду. Не наступай на розы.',en:'You are in my garden. Do not step on the roses.'}})}
+ save();closeP();startGame()}
+function evt(l,e){const L=LOC.find(x=>x.id==l),E=L.ev.find(x=>x.id==e);closeP();
+ if(E.k=='free'){step(ST.lang=='ru'?`Игрок находится в локации «${T2(L.n)}» и ищет разговор или занятие`:`The player is at "${T2(L.n)}" looking for conversation or something to do`);return}
+ if(E.set)unlockLoc(E.set);if(E.flag)S.flags[E.flag]=1;S.cur={who:'',text:T2(E.x),choices:[]};S.scene.push({who:'',text:T2(E.x)});save();startGame()}
+const ARW=(m)=>`<svg viewBox="0 0 30 160"><line x1="${m?25:5}" y1="0" x2="${m?25:5}" y2="160" stroke="#8a1220" stroke-width="2"/><path d="${m?'M21 62L6 80L21 98L16 80Z':'M9 62L24 80L9 98L14 80Z'}" fill="#8a1220" stroke="#b5303f" stroke-width="1.2"/><path d="M${m?25:5} 40l4 4-4 4-4-4zM${m?25:5} 112l4 4-4 4-4-4z" fill="#b5303f"/></svg>`;
+document.body.insertAdjacentHTML('beforeend',`<div class="edge L" id="phw"><div class="pn" onmouseenter="phRender()"><div id="phs"></div></div><div class="tab" onclick="this.parentNode.classList.toggle('open');phRender()">${ARW(0)}</div></div><div class="edge R" id="mpw"><div class="pn" onmouseenter="mpRender()"><div id="mps"></div></div><div class="tab" onclick="this.parentNode.classList.toggle('open');mpRender()">${ARW(1)}</div></div>`);
+const _r=render;function edgeUpd(){const on=scr==='game'&&S&&S.intro==null;document.querySelectorAll('.edge').forEach(x=>{x.style.display=on?'block':'none';if(!on)x.classList.remove('open')})}
+render=function(){_r();edgeUpd()};const _sg=startGame;startGame=function(){_sg();edgeUpd()};
+const _arch=archive;
+archive=function(){const r=ST.lang=='ru',ex=['ch','lore'].map(k=>`<button class="btn sm" style="${tab==k?'background:var(--acc);color:#fff':''}" onclick="tab='${k}';render()">${k=='ch'?t('chars'):(r?'Лор':'Lore')}</button>`).join('');
+ if(tab!='ch'&&tab!='lore')return _arch().replace(/(<div class="tabs">[\s\S]*?)(<\/div>)/,'$1'+ex+'$2');
+ const tabs=['f1','f2','f3'].map(k=>`<button class="btn sm" onclick="tab='${k}';render()">${t(k).split(' (')[0]}</button>`).join('')+ex;let b='';
+ if(tab=='ch')b=`<div class="chars">${CH.map(c=>`<div class="card"><h3>${nm(c)}</h3><div class="mut">${c.pron}</div><p>${ds(c)}</p>${sprs(c)}<div class="mut">${r?'Канон персонажа закреплён и не меняется ИИ.':'Character canon is fixed and not changed by the AI.'}</div></div>`).join('')}</div>`;
+ else{ens();const lc=LOC.filter(l=>S.unl.includes(l.id)).map(l=>`<p><b>${T2(l.n)}.</b> ${T2(l.d)}</p>`).join('');
+  b=`<details class="card" open><summary>${r?'Путеводитель: карта':'Guide: map'}</summary>${lc}</details>`+LORE.map(x=>`<details class="card"><summary>${T2(x.k)}</summary><p>${T2(x.t)}</p></details>`).join('')}
+ return `<div class="top">${back()}<h2>${t('archive')}</h2></div><div class="tabs">${tabs}</div>${b}`};
+const LORE=[
+{k:{ru:'Расы',en:'Races'},t:{ru:'Люди составляют большинство жителей. Эльфы долгоживущие, с длинными ушами, держатся обособленно. (заглушка)',en:'Humans are the majority. Elves are long-lived, long-eared and keep to themselves. (placeholder)'}},
+{k:{ru:'Политика',en:'Politics'},t:{ru:'Окраинами управляет совет старейших семей. (заглушка)',en:'The outskirts are ruled by a council of old families. (placeholder)'}},
+{k:{ru:'История',en:'History'},t:{ru:'Особняк построен давно, его хозяева исчезли при неясных обстоятельствах. (заглушка)',en:'The mansion is old; its owners vanished in unclear circumstances. (placeholder)'}}];
+/* ===== streaming display, voices, timing ===== */
+let t0=0,tf=0,live=false,dir=1;
+function pitch(who){let pr=null;if(who&&S){if(who===S.player.name||who==='_player')pr=S.player.pron;else{const c=CH.find(x=>x.id===S.char);if(c&&c.name.split(' / ').some(n=>who.indexOf(n)===0||n.indexOf(who)===0))pr=c.pron}}
+ const b=!pr?230:pr.startsWith('she')?560:pr.startsWith('he')?250:390;return b*(.94+Math.random()*.12)}
+function part(a,k){const m=a.match(new RegExp('"'+k+'"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)'));if(!m)return null;let v=m[1];const tb=v.match(/\\+$/);if(tb&&tb[0].length%2)v=v.slice(0,-1);try{return JSON.parse('"'+v+'"')}catch(e){return v}}
+function vis(){const st=$('#stage');if(!st)return;const b=BG.find(x=>x.id===S.bg)||BG[0],c=CH.find(x=>x.id===S.char),sp=c.sp.find(x=>x.id===S.sprite)||c.sp[0],e=$('#spr');
+ st.style.background=BGIMG[b.id]?`url(${BGIMG[b.id]}) center/cover`:b.c;$('#bgl').textContent=BGIMG[b.id]?'':b.name[ST.lang];
+ e.style.background=SPIMG[sp.id]?'none':sp.c;e.innerHTML=SPIMG[sp.id]?`<img src="${SPIMG[sp.id]}">`:nm(c)+' \u00b7 '+sp.label}
+function onS(a){if(!tf)tf=performance.now()-t0;const c=CH.find(x=>x.id===S.char);let ch=false;
+ const b=part(a,'bg'),sp=part(a,'sprite');
+ if(b&&BG.some(x=>x.id===b)&&S.bg!==b){S.bg=b;ch=true}
+ if(sp&&c.sp.some(x=>x.id===sp)&&S.sprite!==sp){S.sprite=sp;ch=true}
+ const w=part(a,'who'),x=part(a,'text');if(x==null||!$('#txt'))return;
+ clearInterval(tw);typing=false;live=true;if(ch)vis();
+ $('#who').textContent=w||'';$('#txt').textContent=x;blip(pitch(w),.04,.5)}
+function finishLive(){live=false;if(!$('#stage'))return;vis();$('#who').textContent=S.cur.who||'';$('#txt').textContent=S.cur.text;curTxt=S.cur.text;cam(S.cur.cam);done();
+ const ms=`\u23f1 ${(tf/1000).toFixed(1)}s \u2192 ${((performance.now()-t0)/1000).toFixed(1)}s`;console.log(ms);const h=$('#ch');if(h)h.insertAdjacentHTML('beforeend',`<div class="mut">${ms}</div>`)}
+/* ===== arch menu ===== */
+const CROSS=`<svg class="cx" viewBox="0 0 60 84"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d0243a"/><stop offset=".6" stop-color="#8a1220"/><stop offset="1" stop-color="#55101a"/></linearGradient></defs><g fill="url(#cg)" stroke="#140d0f" stroke-width="1.1" stroke-linejoin="round"><path d="M27 12H33V26H50V32H33V64L30 80L27 64V32H10V26H27Z"/><circle cx="30" cy="6" r="4.5"/><circle cx="24" cy="13" r="3.4"/><circle cx="36" cy="13" r="3.4"/><circle cx="6" cy="29" r="4.5"/><circle cx="13" cy="23" r="3.4"/><circle cx="13" cy="35" r="3.4"/><circle cx="54" cy="29" r="4.5"/><circle cx="47" cy="23" r="3.4"/><circle cx="47" cy="35" r="3.4"/></g><path d="M30 21L38 29L30 37L22 29Z" fill="#140d0f" stroke="#d8cfc0" stroke-width=".8"/><path d="M30 25L34 29L30 33L26 29Z" fill="#d0243a"/></svg>`;
+const EM=c=>`<svg class="em ${c}" viewBox="-12 -12 24 24"><g stroke="#8a1220" stroke-width="1.4" fill="none"><path d="M0-10V10M-10 0H10M-7-7L7 7M-7 7L7-7"/><circle r="5.5" stroke="#55101a"/></g><path d="M0-3L3 0L0 3L-3 0Z" fill="#b5303f"/></svg>`;
+const DV=`<svg class="dv" viewBox="0 0 400 22"><g fill="none" stroke="#8a1220" stroke-width="1.5"><path d="M4 11H150C162 11 166 4 174 4C182 4 183 12 176 12C171 12 171 8 174 8"/><path d="M396 11H250C238 11 234 4 226 4C218 4 217 12 224 12C229 12 229 8 226 8"/></g><path d="M200 2L209 11L200 20L191 11Z" fill="#140d0f" stroke="#8a1220"/><path d="M200 6L205 11L200 16L195 11Z" fill="#b5303f"/><path d="M182 11l4-3 4 3-4 3zM210 11l4-3 4 3-4 3z" fill="#8a1220"/></svg>`;
+const QF=`<svg class="ak" viewBox="-20 -20 40 40"><g fill="none" stroke="#8a1220" stroke-width="1.3"><circle r="17" stroke="#55101a"/><circle cx="7" r="7"/><circle cx="-7" r="7"/><circle cy="7" r="7"/><circle cy="-7" r="7"/></g><path d="M0-4L4 0L0 4L-4 0Z" fill="#b5303f"/></svg>`;
+function bt2(e){const a=e.target&&e.target.closest?e.target.closest('.arch'):null,w=$('.bw2');if(!a||!w)return;w.style.transform=`translate(${a.offsetLeft+a.offsetWidth/2-42}px,${a.offsetTop-56}px)`}
+menu=function(){const has=!!S,STAR='M0 -1Q.14 -.14 1 0Q.14 .14 0 1Q-.14 .14 -1 0Q-.14 -.14 0 -1Z';
+ const sts=[[6,-10,16,0,'#b5303f'],[32,118,12,.6,'#8a1220'],[55,-8,20,1.2,'#8a1220'],[78,114,14,.3,'#b5303f'],[98,10,18,1.7,'#b5303f'],[-3,80,12,2.1,'#8a1220'],[88,-14,11,.9,'#8a1220']].map(a=>`<svg class="st" style="left:${a[0]}%;top:${a[1]}%;width:${a[2]}px;height:${a[2]}px;animation-delay:${a[3]}s" viewBox="-1 -1 2 2"><path d="${STAR}" fill="${a[4]}"/></svg>`).join('');
+ const ar=(c,id,g,lab,extra)=>`<div class="arch ${c}" onclick="snd();${g}" style="--m:url(img/menu_${id}.webp),url(img/menu_${id}.png)">${extra||''}${QF}<span class="al">${lab}</span></div>`;
+ const cont=has?`<svg class="cs" viewBox="0 0 220 110"><path id="cpath" d="M20 110A90 90 0 0 1 200 110" fill="none"/><text onclick="event.stopPropagation();snd();go('game')"><textPath href="#cpath" startOffset="50%" text-anchor="middle">${t('cont').toUpperCase()}</textPath></text></svg>`:'';
+ setTimeout(()=>bt2({target:$('.arch.c')}),30);
+ return `<div class="tw"><div class="ttlw"><h1 class="gt">${t('title').split('⌑').join(CROSS)}</h1>${sts}</div>${EM('l')}${EM('r')}</div>${DV}<div class="arcs" onmouseover="bt2(event)"><div class="bw2">${BAT}</div><div class="r3">${ar('','archive',"go('archive')",t('archive'))}${ar('c','start',"go('pick')",t('start'),cont)}${ar('','settings',"go('settings')",t('settings'))}</div></div>${DV}`};
+/* ===== load images from img/ folder (id.webp or id.png) ===== */
+function tryImg(u){return new Promise(r=>{const i=new Image();i.onload=()=>r(u);i.onerror=()=>r(null);i.src=u})}
+async function loadImgs(){const jobs=[];BG.forEach(b=>jobs.push([BGIMG,b.id]));CH.forEach(c=>c.sp.forEach(x=>jobs.push([SPIMG,x.id])));
+ await Promise.all(jobs.map(async([M,id])=>{if(M[id])return;for(const e of['webp','png']){const u=await tryImg('img/'+id+'.'+e);if(u){M[id]=u;return}}}))}
+Promise.race([loadImgs(),new Promise(r=>setTimeout(r,6000))]).then(()=>{if(['menu','pick','chars'].includes(scr))render()});
 render();
 </script>
 </body>
